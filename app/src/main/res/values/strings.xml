@@ -5,4 +5,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+
+    <!--Sign in-->
+    <string name="email">Your account</string>
+    <string name="password">Your password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="loading">Signing in...</string>
+    <string name="success">Sign in successful</string>
+    <string name="dialog_error_title">Sign in failed</string>
+    <string name="dialog_sign_in_error_message">Your account or password is incorrect. Please check and try again!</string>
+    <string name="dialog_network_error_message">Sorry, could not sign in. Please check your internet connection.</string>
+    <string name="emaila_format_error">Email format is incorrect！</string>
 </resources>

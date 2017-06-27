@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.fantasy1022.hackathon"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,13 +20,45 @@ android {
     }
 }
 
+ext {
+    support_library_version = '25.3.1'
+    espresso_version = '2.2.2'
+    junit_version = '4.12'
+    constraint_version = '1.0.2'
+    firebase_version = '11.0.0'
+    picasso_version = '2.5.2'
+
+    //Tool
+    butterKnifeVersion = '8.4.0'
+    eventBufVersion = '3.0.0'
+    utilcodeVersion = '1.2.1'
+
+    //Ui
+    processButtonVersion = '1.0.4'
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:design:26.+'
+
+    testCompile "junit:junit:$junit_version"
+    compile "com.android.support:appcompat-v7:$support_library_version"
+    compile "com.android.support:design:$support_library_version"
+    compile "com.android.support.constraint:constraint-layout:$constraint_version"
+
+    compile "com.google.firebase:firebase-core:$firebase_version"
+    compile "com.google.firebase:firebase-database:$firebase_version"
+    compile "com.google.firebase:firebase-auth:$firebase_version"
+    compile "com.google.firebase:firebase-messaging:$firebase_version"
+
+    compile "com.jakewharton:butterknife:$butterKnifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    compile "org.greenrobot:eventbus:$eventBufVersion"
+    compile "com.blankj:utilcode:$utilcodeVersion"
+
+    compile "com.github.dmytrodanylyk.android-process-button:library:$processButtonVersion"
+
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
 }
