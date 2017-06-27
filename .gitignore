@@ -31,3 +31,6 @@ local.properties
 
 # Emacs temporary files
 *~.externalNativeBuild
+
+#Google play json config 
+google-services.json
