@@ -34,3 +34,6 @@ local.properties
 
 #Google play json config 
 google-services.json
+
+#Google API key
+google_maps_api.xml

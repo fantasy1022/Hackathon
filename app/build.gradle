@@ -25,7 +25,7 @@ ext {
     espresso_version = '2.2.2'
     junit_version = '4.12'
     constraint_version = '1.0.2'
-    firebase_version = '11.0.0'
+    playservice_version = '11.0.0'
     picasso_version = '2.5.2'
 
     //Tool
@@ -48,10 +48,10 @@ dependencies {
     compile "com.android.support:design:$support_library_version"
     compile "com.android.support.constraint:constraint-layout:$constraint_version"
 
-    compile "com.google.firebase:firebase-core:$firebase_version"
-    compile "com.google.firebase:firebase-database:$firebase_version"
-    compile "com.google.firebase:firebase-auth:$firebase_version"
-    compile "com.google.firebase:firebase-messaging:$firebase_version"
+    compile "com.google.firebase:firebase-core:$playservice_version"
+    compile "com.google.firebase:firebase-database:$playservice_version"
+    compile "com.google.firebase:firebase-auth:$playservice_version"
+    compile "com.google.firebase:firebase-messaging:$playservice_version"
 
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
@@ -60,5 +60,7 @@ dependencies {
 
     compile "com.github.dmytrodanylyk.android-process-button:library:$processButtonVersion"
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "com.android.support.constraint:constraint-layout:$constraint_version"
+
+    compile "com.google.android.gms:play-services-maps:$playservice_version"
 }
