@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -62,5 +63,5 @@ dependencies {
 
     compile "com.android.support.constraint:constraint-layout:$constraint_version"
 
-    compile "com.google.android.gms:play-services-maps:$playservice_version"
+    compile "com.google.android.gms:play-services:$playservice_version"
 }
