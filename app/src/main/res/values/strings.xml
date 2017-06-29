@@ -17,4 +17,16 @@
     <string name="dialog_sign_in_error_message">Your account or password is incorrect. Please check and try again!</string>
     <string name="dialog_network_error_message">Sorry, could not sign in. Please check your internet connection.</string>
     <string name="emaila_format_error">Email format is incorrect！</string>
+
+
+    <!--Navigation_-->
+    <string name="navigation_case_query">案件查詢</string>
+    <string name="navigation_telephone_query">電話查詢</string>
+    <string name="navigation_normal_qa">常見問答</string>
+    <string name="navigation_introduction">使用說明</string>
+
+
+
+    <string name="google_maps_key"></string>
+
 </resources>
