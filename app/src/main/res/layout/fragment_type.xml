@@ -1,13 +1,120 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fantasy1022.hackathon.presentation.type.TypeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="type" />
+    <!--<View-->
+    <!--android:id="@+id/base_line"-->
+    <!--android:layout_width="1dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_centerHorizontal="true" />-->
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/type_road_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="33%"
+        app:layout_widthPercent="50%">
+
+        <Button
+            android:id="@+id/type_road_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="@string/type_road" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/type_environment_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="end"
+        app:layout_heightPercent="33%"
+        app:layout_widthPercent="50%">
+
+        <Button
+            android:id="@+id/type_environment_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="@string/type_environment" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/type_tree_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical"
+        app:layout_heightPercent="33%"
+        app:layout_widthPercent="50%">
+
+        <Button
+            android:id="@+id/type_tree_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="@string/type_tree" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/type_park_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical|end"
+        app:layout_heightPercent="33%"
+        app:layout_widthPercent="50%">
+
+        <Button
+            android:id="@+id/type_park_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="@string/type_park" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/type_other_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        app:layout_heightPercent="33%"
+        app:layout_widthPercent="50%">
+
+        <Button
+            android:id="@+id/type_other_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="@string/type_other" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/type_question_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom|right"
+        app:layout_heightPercent="33%"
+        app:layout_widthPercent="50%">
+
+        <Button
+            android:id="@+id/type_question_btn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="@string/type_question" />
+    </FrameLayout>
+
+
+</android.support.percent.PercentFrameLayout>

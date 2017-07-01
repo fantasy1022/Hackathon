@@ -52,7 +52,7 @@
         android:layout_marginTop="5dp"
         android:layout_toLeftOf="@id/search_btn"
         android:layout_toRightOf="@id/type_segment_group"
-        android:hint="@string/main_hint_key"
+        android:hint="@string/main_hint_type_key"
         android:maxLines="1" />
 
     <FrameLayout

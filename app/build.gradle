@@ -49,6 +49,8 @@ dependencies {
     compile "com.android.support:appcompat-v7:$support_library_version"
     compile "com.android.support:design:$support_library_version"
     compile "com.android.support.constraint:constraint-layout:$constraint_version"
+    compile "com.android.support:percent:$support_library_version"
+
 
     compile "com.google.firebase:firebase-core:$playservice_version"
     compile "com.google.firebase:firebase-database:$playservice_version"

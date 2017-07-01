@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -41,7 +42,11 @@ public class MainActivity extends AppCompatActivity
     RadioButton typeRadioButton;
     @BindView(R.id.map_radio_btn)
     RadioButton mapRadioBtn;
+    @BindView(R.id.search_edittext)
+    EditText searchEdittext;
 
+
+    Fragment typeFragment, mapFragment;
 
     TextView nameText, emailText;//Can not use butterknife to bind
 
@@ -53,9 +58,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
+        initFragment();
 
         mainPresenter = new MainPresenter(this);
         mainPresenter.attachView(this);
+    }
+
+    private void initFragment() {
+        typeFragment = new TypeFragment();
+        mapFragment = new MapFragment();
+        setFragment(typeFragment, false);
     }
 
     private void initView() {
@@ -70,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         nameText = (TextView) header.findViewById(R.id.nameText);
         emailText = (TextView) header.findViewById(R.id.emailText);
         toolbar.setTitle(getResources().getString(R.string.main_title));
-
+        typeRadioButton.toggle();
     }
 
     @Override
@@ -95,7 +107,6 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         mainPresenter.checkSignInStatus();
-        typeRadioButton.callOnClick();
     }
 
     @Override
@@ -137,14 +148,16 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.type_radio_btn)
     public void onClickType() {
-        Log.d(TAG,"type_radio_btn");
-        setFragment(new TypeFragment(),false);
+        Log.d(TAG, "type_radio_btn");
+        searchEdittext.setHint(getResources().getString(R.string.main_hint_type_key));
+        setFragment(typeFragment, false);
     }
 
     @OnClick(R.id.map_radio_btn)
     public void onClickMap() {
-        Log.d(TAG,"map_radio_btn");
-        setFragment(new MapFragment(),false);
+        Log.d(TAG, "map_radio_btn");
+        searchEdittext.setHint(getResources().getString(R.string.main_hint_map_key));
+        setFragment(mapFragment, false);
 
     }
 
