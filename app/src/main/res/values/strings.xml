@@ -8,14 +8,16 @@
 
 
     <!--Sign in-->
-    <string name="email">Your account</string>
-    <string name="password">Your password</string>
-    <string name="sign_in">Sign in</string>
-    <string name="loading">Signing in...</string>
-    <string name="success">Sign in successful</string>
-    <string name="dialog_error_title">Sign in failed</string>
-    <string name="dialog_sign_in_error_message">Your account or password is incorrect. Please check and try again!</string>
-    <string name="dialog_network_error_message">Sorry, could not sign in. Please check your internet connection.</string>
+    <string name="title">嘉義縣民陳情系統</string>
+
+    <string name="email">您的身分證字號</string>
+    <string name="password">您的密碼</string>
+    <string name="sign_in">登入</string>
+    <string name="loading">登入中...</string>
+    <string name="success">登入成功</string>
+    <string name="dialog_error_title">登入失敗</string>
+    <string name="dialog_sign_in_error_message">您的帳號密碼不正確，請確認後重試!</string>
+    <string name="dialog_network_error_message">請確認您的網路連線</string>
     <string name="emaila_format_error">Email format is incorrect！</string>
 
 

@@ -36,6 +36,7 @@ ext {
 
     //Ui
     processButtonVersion = '1.0.4'
+    segmentVersion = '1.0.6'
 }
 
 dependencies {
@@ -58,6 +59,8 @@ dependencies {
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
     compile "org.greenrobot:eventbus:$eventBufVersion"
     compile "com.blankj:utilcode:$utilcodeVersion"
+    compile "info.hoang8f:android-segmented:$segmentVersion"
+
 
     compile "com.github.dmytrodanylyk.android-process-button:library:$processButtonVersion"
 

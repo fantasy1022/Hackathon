@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
@@ -27,9 +28,11 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     public final String TAG = getClass().getSimpleName();
 
-    //TODO: Bring last login email
     private SignInContract.Presenter signInPresenter;
     private String email = "", password = "";
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @BindView(R.id.emailEditText)
     EditText emailEditText;
@@ -51,6 +54,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         initSignInBtn();
         signInPresenter = new SignInPresenter(this);
         signInPresenter.attachView(this);
+        toolbar.setTitle(R.string.title);
     }
 
     @Override
@@ -120,11 +124,11 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     @OnTextChanged(R.id.passwordEditText)
     public void onPasswordEdit(Editable editable) {
         password = editable.toString();
-        if (!RegexUtils.isEmail(email)) {
-            emailInputLay.setError(getString(R.string.emaila_format_error));
-        } else {
-            emailInputLay.setError(null);
-        }
+//        if (!RegexUtils.isEmail(email)) {
+//            emailInputLay.setError(getString(R.string.emaila_format_error));
+//        } else {
+//            emailInputLay.setError(null);
+//        }
         checkSignInBtnEnable();
     }
 
