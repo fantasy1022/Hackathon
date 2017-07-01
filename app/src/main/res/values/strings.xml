@@ -27,8 +27,19 @@
     <string name="navigation_normal_qa">常見問答</string>
     <string name="navigation_introduction">使用說明</string>
 
+    <!--main-->
+    <string name="main_title">我要陳情!(包大人～恕我攔轎)</string>
+    <string name="main_switch_type">類型檢視</string>
+    <string name="main_switch_map">地圖檢視</string>
+    <string name="main_search_btn">Go!</string>
+    <string name="main_hint_key">關鍵字搜尋</string>
+    <string name="main_map_key">地點搜尋</string>
 
 
     <string name="google_maps_key"></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

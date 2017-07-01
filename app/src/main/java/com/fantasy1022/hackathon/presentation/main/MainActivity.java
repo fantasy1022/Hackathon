@@ -3,6 +3,9 @@ package com.fantasy1022.hackathon.presentation.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,13 +15,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.fantasy1022.hackathon.R;
+import com.fantasy1022.hackathon.presentation.map.MapFragment;
 import com.fantasy1022.hackathon.presentation.signin.SignInActivity;
+import com.fantasy1022.hackathon.presentation.type.TypeFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainContract.View {
@@ -30,6 +37,12 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+    @BindView(R.id.type_radio_btn)
+    RadioButton typeRadioButton;
+    @BindView(R.id.map_radio_btn)
+    RadioButton mapRadioBtn;
+
+
     TextView nameText, emailText;//Can not use butterknife to bind
 
     private MainContract.Presenter mainPresenter;
@@ -43,8 +56,6 @@ public class MainActivity extends AppCompatActivity
 
         mainPresenter = new MainPresenter(this);
         mainPresenter.attachView(this);
-
-
     }
 
     private void initView() {
@@ -58,6 +69,8 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         nameText = (TextView) header.findViewById(R.id.nameText);
         emailText = (TextView) header.findViewById(R.id.emailText);
+        toolbar.setTitle(getResources().getString(R.string.main_title));
+
     }
 
     @Override
@@ -69,22 +82,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
-//    private void setFragment(Fragment fragment, boolean isAddBackStack) {
-//        FragmentManager fragmentMgr = getSupportFragmentManager();
-//        FragmentTransaction fragmentTrans = fragmentMgr.beginTransaction();
-//        fragmentTrans.replace(R.id.contentLay, fragment);//TODO: Check tag fragmentTrans
-//        if (isAddBackStack) {
-//            fragmentTrans.addToBackStack(null);
-//        }
-//        fragmentMgr.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-//            @Override
-//            public void onBackStackChanged() {
-//                Log.d(TAG, "onBackStackChanged");
-//            }
-//        });
-//        fragmentTrans.commit();
-//    }
 
     @Override
     protected void onStart() {
@@ -98,6 +95,7 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         mainPresenter.checkSignInStatus();
+        typeRadioButton.callOnClick();
     }
 
     @Override
@@ -137,6 +135,19 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @OnClick(R.id.type_radio_btn)
+    public void onClickType() {
+        Log.d(TAG,"type_radio_btn");
+        setFragment(new TypeFragment(),false);
+    }
+
+    @OnClick(R.id.map_radio_btn)
+    public void onClickMap() {
+        Log.d(TAG,"map_radio_btn");
+        setFragment(new MapFragment(),false);
+
+    }
+
     @Override
     public void setToolBarName(String name) {
         toolbar.setTitle(name);
@@ -170,15 +181,33 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
+//        if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    private void setFragment(Fragment fragment, boolean isAddBackStack) {
+        FragmentManager fragmentMgr = getSupportFragmentManager();
+        FragmentTransaction fragmentTrans = fragmentMgr.beginTransaction();
+        fragmentTrans.replace(R.id.content_layout, fragment);//TODO: Check tag fragmentTrans
+        if (isAddBackStack) {
+            fragmentTrans.addToBackStack(null);
+        }
+        fragmentMgr.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                Log.d(TAG, "onBackStackChanged");
+            }
+        });
+        fragmentTrans.commit();
+    }
+
 
 }

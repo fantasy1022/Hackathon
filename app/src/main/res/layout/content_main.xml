@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +8,57 @@
     tools:context="com.fantasy1022.hackathon.presentation.main.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
+    <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/type_segment_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        segmentedgroup:sc_border_width="2dp"
+        segmentedgroup:sc_corner_radius="10dp">
 
-</android.support.constraint.ConstraintLayout>
+        <RadioButton
+            android:id="@+id/type_radio_btn"
+            style="@style/RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_switch_type" />
+
+        <RadioButton
+            android:id="@+id/map_radio_btn"
+            style="@style/RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_switch_map" />
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
+    <Button
+        android:id="@+id/search_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:maxLines="1"
+        android:text="@string/main_search_btn"
+        android:textSize="@dimen/small_text_size" />
+
+
+    <EditText
+        android:id="@+id/search_edittext"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@id/search_btn"
+        android:layout_toRightOf="@id/type_segment_group"
+        android:hint="@string/main_hint_key"
+        android:maxLines="1" />
+
+    <FrameLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/type_segment_group"></FrameLayout>
+
+</RelativeLayout>

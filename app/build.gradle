@@ -67,6 +67,8 @@ dependencies {
     compile "com.android.support.constraint:constraint-layout:$constraint_version"
 
     compile "com.google.android.gms:play-services:$playservice_version"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:support-v4:25.3.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

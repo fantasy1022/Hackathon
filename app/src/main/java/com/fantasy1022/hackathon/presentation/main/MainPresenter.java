@@ -5,11 +5,11 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.blankj.utilcode.utils.SPUtils;
+import com.fantasy1022.hackathon.R;
 import com.fantasy1022.hackathon.common.Constant;
 import com.fantasy1022.hackathon.presentation.base.BasePresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 /**
  * Created by fantasy_apple on 2017/6/29.
