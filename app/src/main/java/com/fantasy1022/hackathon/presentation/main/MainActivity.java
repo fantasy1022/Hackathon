@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainContract.View {
 
     public final String TAG = getClass().getSimpleName();
+    private final String TYPE_FRAGMENT = "TYPE_FRAGMENT";
+    private final String MAP_FRAGMENT = "MAP_FRAGMENT";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.drawer_layout)
@@ -67,7 +69,16 @@ public class MainActivity extends AppCompatActivity
     private void initFragment() {
         typeFragment = new TypeFragment();
         mapFragment = new MapFragment();
+//        setFragment(mapFragment, false, MAP_FRAGMENT);
         setFragment(typeFragment, false);
+//        showTypeFragment();
+
+//        FragmentManager fragmentMgr = getSupportFragmentManager();
+//        fragmentMgr.beginTransaction()
+//                .add(R.id.content_layout, typeFragment, typeFragment.getClass().getName())
+//                .add(R.id.content_layout, mapFragment, typeFragment.getClass().getName())
+//                .hide(typeFragment)
+//                .commit();
     }
 
     private void initView() {
@@ -150,15 +161,15 @@ public class MainActivity extends AppCompatActivity
     public void onClickType() {
         Log.d(TAG, "type_radio_btn");
         searchEdittext.setHint(getResources().getString(R.string.main_hint_type_key));
-        setFragment(typeFragment, false);
+        showTypeFragment();
     }
 
     @OnClick(R.id.map_radio_btn)
     public void onClickMap() {
         Log.d(TAG, "map_radio_btn");
         searchEdittext.setHint(getResources().getString(R.string.main_hint_map_key));
-        setFragment(mapFragment, false);
-
+        //showMapFragment();
+        setFragment(mapFragment,false);
     }
 
     @Override
@@ -205,11 +216,29 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void showTypeFragment() {
+        typeFragment = getSupportFragmentManager().findFragmentByTag(TypeFragment.class.getName());
+        mapFragment = getSupportFragmentManager().findFragmentByTag(MapFragment.class.getName());
+        getSupportFragmentManager().beginTransaction()
+                .show(typeFragment)
+                .hide(mapFragment)
+                .commit();
+    }
+
+  //  private void showMapFragment() {
+//        typeFragment = getSupportFragmentManager().findFragmentByTag(TypeFragment.class.getName());
+//        mapFragment = getSupportFragmentManager().findFragmentByTag(MapFragment.class.getName());
+//        getSupportFragmentManager().beginTransaction()
+//                .show(mapFragment)
+//                .hide(typeFragment)
+//                .commit();
+//
+//    }
 
     private void setFragment(Fragment fragment, boolean isAddBackStack) {
         FragmentManager fragmentMgr = getSupportFragmentManager();
         FragmentTransaction fragmentTrans = fragmentMgr.beginTransaction();
-        fragmentTrans.replace(R.id.content_layout, fragment);//TODO: Check tag fragmentTrans
+        fragmentTrans.replace(R.id.content_layout, fragment, fragment.getClass().getName());//TODO: Check tag fragmentTrans
         if (isAddBackStack) {
             fragmentTrans.addToBackStack(null);
         }
