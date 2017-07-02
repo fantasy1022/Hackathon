@@ -1,24 +1,36 @@
 package com.fantasy1022.hackathon.presentation.type;
 
-import android.content.Context;
-import android.net.Uri;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.fantasy1022.hackathon.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class TypeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private int[] colors;
+    @BindView(R.id.type_road_btn)
+    Button typeRoadBtn;
+    @BindView(R.id.type_environment_btn)
+    Button typeEnvironmentBtn;
+    @BindView(R.id.type_tree_btn)
+    Button typeTreeBtn;
+    @BindView(R.id.type_park_btn)
+    Button typeParkBtn;
+    @BindView(R.id.type_other_btn)
+    Button typeOtherBtn;
+    @BindView(R.id.type_question_btn)
+    Button typeQuestionBtn;
 
 
     public TypeFragment() {
@@ -38,17 +50,34 @@ public class TypeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        colors = getActivity().getResources().getIntArray(R.array.colorTypeMaps);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_type, container, false);
+        View view = inflater.inflate(R.layout.fragment_type, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @OnClick({R.id.type_road_btn, R.id.type_environment_btn, R.id.type_tree_btn, R.id.type_park_btn, R.id.type_other_btn, R.id.type_question_btn})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.type_road_btn:
+                break;
+            case R.id.type_environment_btn:
+                break;
+            case R.id.type_tree_btn:
+                break;
+            case R.id.type_park_btn:
+                break;
+            case R.id.type_other_btn:
+                break;
+            case R.id.type_question_btn:
+                break;
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

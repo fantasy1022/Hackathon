@@ -20,7 +20,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.fantasy1022.hackathon.R;
-import com.fantasy1022.hackathon.presentation.map.MapFragment;
+import com.fantasy1022.hackathon.presentation.map.MapsFragment;
 import com.fantasy1022.hackathon.presentation.signin.SignInActivity;
 import com.fantasy1022.hackathon.presentation.type.TypeFragment;
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initFragment() {
         typeFragment = new TypeFragment();
-        mapFragment = new MapFragment();
+        mapFragment = new MapsFragment();
 //        setFragment(mapFragment, false, MAP_FRAGMENT);
         setFragment(typeFragment, false);
 //        showTypeFragment();
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity
 
     private void showTypeFragment() {
         typeFragment = getSupportFragmentManager().findFragmentByTag(TypeFragment.class.getName());
-        mapFragment = getSupportFragmentManager().findFragmentByTag(MapFragment.class.getName());
+        mapFragment = getSupportFragmentManager().findFragmentByTag(MapsFragment.class.getName());
         getSupportFragmentManager().beginTransaction()
                 .show(typeFragment)
                 .hide(mapFragment)
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity
 
   //  private void showMapFragment() {
 //        typeFragment = getSupportFragmentManager().findFragmentByTag(TypeFragment.class.getName());
-//        mapFragment = getSupportFragmentManager().findFragmentByTag(MapFragment.class.getName());
+//        mapFragment = getSupportFragmentManager().findFragmentByTag(MapsFragment.class.getName());
 //        getSupportFragmentManager().beginTransaction()
 //                .show(mapFragment)
 //                .hide(typeFragment)

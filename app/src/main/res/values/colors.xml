@@ -8,5 +8,24 @@
     <color name="colorSecondaryText">#000000</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
+
+
+    <!--Map type-->
+    <color name="colorRoad">#ff1744</color>
+    <color name="colorEnvironment">#d500f9</color>
+    <color name="colorTree">#3d5afe</color>
+    <color name="colorPark">#00e676</color>
+    <color name="colorOther">#ffff00</color>
+    <color name="colorQuestion">#ff6e40</color>
+
+    <array name="colorTypeMaps">
+        <item>@color/colorRoad</item>
+        <item>@color/colorEnvironment</item>
+        <item>@color/colorTree</item>
+        <item>@color/colorPark</item>
+        <item>@color/colorOther</item>
+        <item>@color/colorQuestion</item>
+    </array>
+
 </resources>
 

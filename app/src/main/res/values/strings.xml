@@ -43,7 +43,21 @@
     <string name="type_other">其他陳情</string>
     <string name="type_question">問題諮詢及分類</string>
 
+
+    <!--Map-->
     <string name="google_maps_key">AIzaSyBi2cEGQs7MkNNarWClj8J1zW0BzRlyjyg</string>
+
+    <string-array name="map_type_spinner">
+        <item>道路維護</item>
+        <item>環保問題</item>
+        <item>路燈及路樹</item>
+        <item>公園設施</item>
+        <item>其他陳情</item>
+    </string-array>
+
+    <string name="map_week">週內</string>
+
+
 
 
 </resources>

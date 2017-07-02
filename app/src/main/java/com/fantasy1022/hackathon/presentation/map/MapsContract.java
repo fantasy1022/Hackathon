@@ -12,7 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
  * Created by fantasy_apple on 2017/7/1.
  */
 
-public interface MapContract {
+public interface MapsContract {
 
     interface View extends MvpView {
 

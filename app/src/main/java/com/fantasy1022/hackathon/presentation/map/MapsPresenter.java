@@ -23,9 +23,9 @@ import com.google.android.gms.maps.model.LatLng;
  * Created by fantasy_apple on 2017/7/1.
  */
 
-public class MapPresenter extends BasePresenter<MainContract.View> implements MapContract.Presenter {
+public class MapsPresenter extends BasePresenter<MainContract.View> implements MapsContract.Presenter {
 
-    private static final String TAG = MapsActivity.class.getSimpleName();
+    private static final String TAG = MapsFragment.class.getSimpleName();
     private final int DEFAULT_ZOOM = 15;
     private final LatLng DEFAULT_LOCATION = new LatLng(-33.8523341, 151.2106085); //Use taipei
     private final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
@@ -38,7 +38,7 @@ public class MapPresenter extends BasePresenter<MainContract.View> implements Ma
     private CameraPosition cameraPosition;
 
 
-    public MapPresenter(FragmentActivity fragmentActivity) {
+    public MapsPresenter(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
     }
 
@@ -110,6 +110,7 @@ public class MapPresenter extends BasePresenter<MainContract.View> implements Ma
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng(lastKnownLocation.getLatitude(),
                             lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+            Log.d(TAG, "lat:" + lastKnownLocation.getLatitude() + " lon:" + lastKnownLocation.getLongitude());
         } else {
             Log.d(TAG, "Current location is null. Using defaults.");
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, DEFAULT_ZOOM));

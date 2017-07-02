@@ -3,35 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fantasy1022.hackathon.presentation.map.MapFragment">
+    tools:context="com.fantasy1022.hackathon.presentation.map.MapsFragment">
 
-    <Spinner
-    android:id="@+id/spinner"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:spinnerMode="dropdown"
-    style="@style/Widget.AppCompat.Spinner"/>
-
-
-    <com.xw.repo.BubbleSeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/week_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        app:bsb_auto_adjust_section_mark="true"
-        app:bsb_max="4"
-        app:bsb_min="1"
-        app:bsb_progress="1"
-        app:bsb_section_count="3"
-        app:bsb_section_text_position="below_section_mark"
-        app:bsb_touch_to_seek="true" />
+        android:layout_marginTop="10dp"
+        android:text="@string/map_week"
+        android:textStyle="bold" />
+
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/title_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/week_txt">
+
+
+        <Spinner
+            android:id="@+id/map_type_spinner"
+            style="@style/Widget.AppCompat.Spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            app:layout_widthPercent="50%" />
+
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            app:bsb_auto_adjust_section_mark="true"
+            app:bsb_max="4"
+            app:bsb_min="1"
+            app:bsb_progress="1"
+            app:bsb_section_count="3"
+            app:bsb_section_text_position="below_section_mark"
+            app:bsb_touch_to_seek="true"
+            app:layout_widthPercent="50%" />
+
+
+    </android.support.percent.PercentFrameLayout>
 
     <fragment
         android:id="@+id/map_fragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/seekbar"
-        tools:context=".presentation.map.MapFragment" />
+        android:layout_below="@id/title_frame_layout"
+        tools:context=".presentation.map.MapsFragment" />
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 
 import com.fantasy1022.hackathon.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -16,14 +17,19 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, MapContract.View,
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsContract.View,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private final String TAG = getClass().getSimpleName();
-    private MapPresenter mapPresenter;
+    private MapsPresenter mapPresenter;
+    @BindView(R.id.map_type_spinner)
+    Spinner mapTypeSpinner;
 
-    public MapFragment() {
+    public MapsFragment() {
         // Required empty public constructor
     }
 
@@ -33,9 +39,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
         super.onCreate(savedInstanceState);
         if (mapPresenter == null) {
             Log.d(TAG, "mapPresenter");
-            mapPresenter = new MapPresenter(getActivity());
-            mapPresenter.initGoogleApiClient(this,this);
-        }else{
+            mapPresenter = new MapsPresenter(getActivity());
+            mapPresenter.initGoogleApiClient(this, this);
+        } else {
             mapPresenter.updateLocationUI();
             mapPresenter.getDeviceLocation();
         }
@@ -46,13 +52,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
-
+        ButterKnife.bind(this, rootView);
+        MapTypeAdapter adapter= new MapTypeAdapter(getActivity().getResources().getStringArray(R.array.map_type_spinner), getActivity().getResources().getIntArray(R.array.colorTypeMaps));
+        mapTypeSpinner.setAdapter(adapter);
         return rootView;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.d(TAG,"onMapReady");
+        Log.d(TAG, "onMapReady");
         mapPresenter.setGoogleMap(googleMap);
         mapPresenter.updateLocationUI();
         mapPresenter.getDeviceLocation();
