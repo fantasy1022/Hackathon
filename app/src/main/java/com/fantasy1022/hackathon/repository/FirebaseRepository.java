@@ -1,5 +1,6 @@
 package com.fantasy1022.hackathon.repository;
 
+import android.support.annotation.IntDef;
 import android.util.Log;
 
 import com.fantasy1022.hackathon.entity.PlaceEntity;
@@ -51,13 +52,20 @@ public class FirebaseRepository {
         };
     }
 
-    public void getDateFromFirebase(String key){
+    public PlaceEntity getPlaceEntity() {
+        return placeEntity;
+    }
+
+    public void getDateFromFirebase(String key) {
         myRef = database.getReference(key);
-        myRef.addListenerForSingleValueEvent(placeListener);
+        myRef.addValueEventListener(placeListener);
     }
 
 
     public void removeListener() {
         myRef.removeEventListener(placeListener);
     }
+
+
+
 }

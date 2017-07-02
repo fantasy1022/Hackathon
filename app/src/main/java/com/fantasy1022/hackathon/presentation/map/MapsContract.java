@@ -3,7 +3,6 @@ package com.fantasy1022.hackathon.presentation.map;
 import com.fantasy1022.hackathon.presentation.base.MvpPresenter;
 import com.fantasy1022.hackathon.presentation.base.MvpView;
 import com.fantasy1022.hackathon.presentation.main.MainContract;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,6 +31,9 @@ public interface MapsContract {
         void getDeviceLocation();
 
         void handlePermission(int requestCode, int[] grantResults);
+
+        void updateMapMaker(int index, int weekValue);
+
 
         void disconnet();
     }

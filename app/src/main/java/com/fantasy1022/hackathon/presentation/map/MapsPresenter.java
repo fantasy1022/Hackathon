@@ -1,12 +1,19 @@
 package com.fantasy1022.hackathon.presentation.map;
 
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.support.annotation.IntDef;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import com.fantasy1022.hackathon.R;
+import com.fantasy1022.hackathon.entity.PlaceDetailEntity;
+import com.fantasy1022.hackathon.entity.PlaceEntity;
 import com.fantasy1022.hackathon.presentation.base.BasePresenter;
 import com.fantasy1022.hackathon.presentation.main.MainContract;
 import com.fantasy1022.hackathon.repository.FirebaseRepository;
@@ -17,8 +24,12 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 /**
  * Created by fantasy_apple on 2017/7/1.
@@ -139,10 +150,86 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
         updateLocationUI();
     }
 
+    @Override
+    public void updateMapMaker(@MapTypeMode int index, int weekValue) {
+        ArrayList<PlaceDetailEntity> placeDetailEntities = new ArrayList<>();
+        PlaceEntity placeEntity = FirebaseRepository.getInstance().getPlaceEntity();
+        if (placeEntity != null) {
+            switch (index) {
+                case TYPE_ROAD:
+                    placeDetailEntities = placeEntity.getRoad();
+
+                    break;
+                case TYPE_ENVIRONMENT:
+                    placeDetailEntities = placeEntity.getEnvironment();
+                    break;
+                case TYPE_TREE:
+                    placeDetailEntities = placeEntity.getTree();
+                    break;
+                case TYPE_PARK:
+                    placeDetailEntities = placeEntity.getTree();
+                    break;
+                case TYPE_OTHER:
+                    placeDetailEntities = placeEntity.getOther();
+                    break;
+            }
+        }
+        if (googleMap != null) {
+            googleMap.clear();
+            for (int i = 0; i < placeDetailEntities.size(); i++) {
+                if (placeDetailEntities.get(i).getTime() <= weekValue) {
+                    LatLng latLng = new LatLng(placeDetailEntities.get(i).getLat(), placeDetailEntities.get(i).getLon());
+
+                    int px = fragmentActivity.getResources().getDimensionPixelSize(R.dimen.map_dot_marker_size);
+                    Bitmap mDotMarkerBitmap = Bitmap.createBitmap(px, px, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(mDotMarkerBitmap);
+                    Drawable shape;
+                    switch (index) {
+                        case TYPE_ROAD:
+                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_road);
+                            break;
+                        case TYPE_ENVIRONMENT:
+                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_environment);
+                            break;
+                        case TYPE_TREE:
+                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_tree);
+                            break;
+                        case TYPE_PARK:
+                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_park);
+                            break;
+                        case TYPE_OTHER:
+                        default:
+                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_other);
+                            break;
+                    }
+                    shape.setBounds(0, 0, mDotMarkerBitmap.getWidth(), mDotMarkerBitmap.getHeight());
+                    shape.draw(canvas);
+
+                    googleMap.addMarker(new MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromBitmap(mDotMarkerBitmap))
+                            .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
+                            .position(latLng));
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, googleMap.getCameraPosition().zoom));
+                }
+            }
+        }
+
+    }
+
 
     @Override
     public void disconnet() {
 //        googleApiClient.disconnect();
 //        googleApiClient = null;
     }
+
+    @IntDef({TYPE_ROAD, TYPE_ENVIRONMENT, TYPE_TREE, TYPE_PARK, TYPE_OTHER})
+    public @interface MapTypeMode {
+    }
+
+    public static final int TYPE_ROAD = 0;
+    public static final int TYPE_ENVIRONMENT = 1;
+    public static final int TYPE_TREE = 2;
+    public static final int TYPE_PARK = 3;
+    public static final int TYPE_OTHER = 4;
 }

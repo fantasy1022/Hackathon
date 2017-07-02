@@ -1,6 +1,7 @@
 package com.fantasy1022.hackathon.presentation.map;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,11 +14,13 @@ import android.widget.Spinner;
 import com.fantasy1022.hackathon.R;
 import com.fantasy1022.hackathon.common.Constant;
 import com.fantasy1022.hackathon.event.DataChangeEvent;
+import com.fantasy1022.hackathon.presentation.map.MapsPresenter.MapTypeMode;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.xw.repo.BubbleSeekBar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,15 +28,28 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemSelected;
+
+import static com.fantasy1022.hackathon.presentation.map.MapsPresenter.TYPE_ROAD;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsContract.View,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener,
+        BubbleSeekBar.OnProgressChangedListener {
 
     private final String TAG = getClass().getSimpleName();
     private MapsPresenter mapPresenter;
     @BindView(R.id.map_type_spinner)
     Spinner mapTypeSpinner;
+    @BindView(R.id.seekbar)
+    BubbleSeekBar seekBar;
+
+
+    private
+    @MapTypeMode
+    int typeIndex;
+    private int weekSeekBar;
+
 
     public MapsFragment() {
         // Required empty public constructor
@@ -62,7 +78,18 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
         ButterKnife.bind(this, rootView);
         MapTypeAdapter adapter = new MapTypeAdapter(getActivity().getResources().getStringArray(R.array.map_type_spinner), getActivity().getResources().getIntArray(R.array.colorTypeMaps));
         mapTypeSpinner.setAdapter(adapter);
+        seekBar.setOnProgressChangedListener(this);
+        seekBar.setProgress(4);
+        typeIndex = TYPE_ROAD;
+        weekSeekBar = 4;
         return rootView;
+    }
+
+    @OnItemSelected(R.id.map_type_spinner)
+    public void onMapTypeSelected(Spinner spinner, int position) {
+        Log.d(TAG, "position:" + position);
+        typeIndex = position;
+        mapPresenter.updateMapMaker(typeIndex, weekSeekBar);
     }
 
     @Override
@@ -112,12 +139,34 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessage(DataChangeEvent event) {
-        Log.d(TAG, "DataChangeEvent:"+event.isChange);
-
+    public void onFirebaseDataChange(DataChangeEvent event) {
+        Log.d(TAG, "DataChangeEvent:" + event.isChange);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mapPresenter.updateMapMaker(typeIndex, weekSeekBar);
+            }
+        }, 1000);
     }
 
-//    @Override
+    @Override
+    public void onProgressChanged(int progress, float progressFloat) {
+        //Do nothing
+    }
+
+    @Override
+    public void getProgressOnActionUp(int progress, float progressFloat) {
+        //Do nothing
+    }
+
+    @Override
+    public void getProgressOnFinally(int progress, float progressFloat) {
+        Log.d(TAG, "getProgressOnFinally" + progress + " float:" + progressFloat);
+        weekSeekBar = progress;
+        mapPresenter.updateMapMaker(typeIndex, weekSeekBar);
+    }
+
+    //    @Override
 //    public void onDestroyView() {
 //        Log.d(TAG,"onDestroyView");
 //        mapPresenter.disconnet();
