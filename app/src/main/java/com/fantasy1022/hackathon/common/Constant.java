@@ -9,4 +9,6 @@ public class Constant {
     public static final String KEY_SP_EMAIL = "KEY_SP_EMAIL";
     public static final String KEY_SP_PASSWORD = "KEY_SP_PASSWORD";
     public static final String KEY_SP_TOPIC_NAME = "KEY_SP_TOPIC_NAME";
+
+    public static final String KEY_FIREBASE_MAP_TYPE = "map_type";
 }

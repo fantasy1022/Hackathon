@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.fantasy1022.hackathon.presentation.base.BasePresenter;
 import com.fantasy1022.hackathon.presentation.main.MainContract;
+import com.fantasy1022.hackathon.repository.FirebaseRepository;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -53,6 +54,11 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
                 .addApi(Places.PLACE_DETECTION_API)
                 .build();
         googleApiClient.connect();
+    }
+
+    @Override
+    public void getDateFromFirebase(String key) {
+        FirebaseRepository.getInstance().getDateFromFirebase(key);
     }
 
     @Override

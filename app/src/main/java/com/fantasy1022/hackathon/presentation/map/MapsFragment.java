@@ -11,11 +11,17 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 
 import com.fantasy1022.hackathon.R;
+import com.fantasy1022.hackathon.common.Constant;
+import com.fantasy1022.hackathon.event.DataChangeEvent;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +47,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
             Log.d(TAG, "mapPresenter");
             mapPresenter = new MapsPresenter(getActivity());
             mapPresenter.initGoogleApiClient(this, this);
+            mapPresenter.getDateFromFirebase(Constant.KEY_FIREBASE_MAP_TYPE);
         } else {
             mapPresenter.updateLocationUI();
             mapPresenter.getDeviceLocation();
@@ -53,9 +60,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_map, container, false);
         ButterKnife.bind(this, rootView);
-        MapTypeAdapter adapter= new MapTypeAdapter(getActivity().getResources().getStringArray(R.array.map_type_spinner), getActivity().getResources().getIntArray(R.array.colorTypeMaps));
+        MapTypeAdapter adapter = new MapTypeAdapter(getActivity().getResources().getStringArray(R.array.map_type_spinner), getActivity().getResources().getIntArray(R.array.colorTypeMaps));
         mapTypeSpinner.setAdapter(adapter);
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -64,6 +77,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
         mapPresenter.setGoogleMap(googleMap);
         mapPresenter.updateLocationUI();
         mapPresenter.getDeviceLocation();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -90,6 +109,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
                                            @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
         mapPresenter.handlePermission(requestCode, grantResults);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessage(DataChangeEvent event) {
+        Log.d(TAG, "DataChangeEvent:"+event.isChange);
+
     }
 
 //    @Override

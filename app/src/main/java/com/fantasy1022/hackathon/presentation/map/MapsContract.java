@@ -23,6 +23,8 @@ public interface MapsContract {
 
         void initGoogleApiClient(OnConnectionFailedListener listener, ConnectionCallbacks connectionCallbacks);
 
+        void getDateFromFirebase(String key);
+
         void setGoogleMap(GoogleMap googleMap);
 
         void updateLocationUI();
