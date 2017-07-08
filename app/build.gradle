@@ -22,12 +22,12 @@ android {
 }
 
 ext {
-    support_library_version = '25.3.1'
-    espresso_version = '2.2.2'
-    junit_version = '4.12'
-    constraint_version = '1.0.2'
-    playservice_version = '11.0.0'
-    picasso_version = '2.5.2'
+    supportLibraryVersion = '25.3.1'
+    espressoVersion = '2.2.2'
+    junitVersion = '4.12'
+    constraintVersion = '1.0.2'
+    playserviceVersion = '11.0.0'
+    picassoVersion = '2.5.2'
 
     //Tool
     butterKnifeVersion = '8.4.0'
@@ -42,21 +42,22 @@ ext {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$espresso_version", {
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    testCompile "junit:junit:$junit_version"
-    compile "com.android.support:appcompat-v7:$support_library_version"
-    compile "com.android.support:design:$support_library_version"
-    compile "com.android.support.constraint:constraint-layout:$constraint_version"
-    compile "com.android.support:percent:$support_library_version"
-    compile "com.android.support:support-v4:$support_library_version"
+    testCompile "junit:junit:$junitVersion"
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:percent:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
+    compile "com.android.support.constraint:constraint-layout:$constraintVersion"
+    compile "com.google.android.gms:play-services:$playserviceVersion"
 
-    compile "com.google.firebase:firebase-core:$playservice_version"
-    compile "com.google.firebase:firebase-database:$playservice_version"
-    compile "com.google.firebase:firebase-auth:$playservice_version"
-    compile "com.google.firebase:firebase-messaging:$playservice_version"
+    compile "com.google.firebase:firebase-core:$playserviceVersion"
+    compile "com.google.firebase:firebase-database:$playserviceVersion"
+    compile "com.google.firebase:firebase-auth:$playserviceVersion"
+    compile "com.google.firebase:firebase-messaging:$playserviceVersion"
 
     compile "com.jakewharton:butterknife:$butterKnifeVersion"
     apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
@@ -64,14 +65,9 @@ dependencies {
     compile "com.blankj:utilcode:$utilcodeVersion"
     compile "info.hoang8f:android-segmented:$segmentVersion"
 
-
     compile "com.github.dmytrodanylyk.android-process-button:library:$processButtonVersion"
-
-    compile "com.android.support.constraint:constraint-layout:$constraint_version"
-
-    compile "com.google.android.gms:play-services:$playservice_version"
-
     compile "com.xw.repo:bubbleseekbar:$bubbleseekbarVersion"
+    compile "com.squareup.picasso:picasso:$picassoVersion"
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -5,38 +5,64 @@ package com.fantasy1022.hackathon.entity;
  */
 
 public class PlaceDetailEntity {
-    private Double lat;
-    private Double lon;
-    private int time;
+    private String num;
+    private String lat;
+    private String lon;
+    private String time;
     private String question;
-    private String content;
     private String pictureUrl;
+    private String category;
+    private String resolve;
+    private String filingTime;
+    private String address;
+    private String thumb;
 
 
     public PlaceDetailEntity() {
     }
 
+    public String getNum() {
+        return num;
+    }
+
+    public boolean getResolve() {
+        return resolve.equals("true") ? true : false;
+    }
+
     public Double getLat() {
-        return lat;
+        return Double.parseDouble(lat);
     }
 
     public Double getLon() {
-        return lon;
+        return Double.parseDouble(lon);
     }
 
     public int getTime() {
-        return time;
+        return Integer.parseInt(time);
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public String getContent() {
-        return content;
-    }
 
     public String getPictureUrl() {
         return pictureUrl;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getFilingTime() {
+        return filingTime;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getThumb() {
+        return thumb;
     }
 }

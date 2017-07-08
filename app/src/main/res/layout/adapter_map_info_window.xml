@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/event_image"
+        android:layout_width="60dp"
+        android:layout_height="100dp"
+        android:src="@drawable/round_icon"/>
+
+    <TextView
+        android:id="@+id/content_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/event_image"
+        android:textStyle="bold"
+        apps:text="立案編號:123\n陳情主旨:交通標誌牌面損壞(含汙損)、傾斜\n類別:交通號誌\n立案時間:2017/1/5\n陳情地址:108台灣台北市萬華區國興路98號" />
+
+
+</RelativeLayout>

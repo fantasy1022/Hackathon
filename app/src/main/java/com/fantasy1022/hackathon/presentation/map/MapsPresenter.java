@@ -1,9 +1,7 @@
 package com.fantasy1022.hackathon.presentation.map;
 
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.location.Location;
 import android.support.annotation.IntDef;
 import android.support.v4.app.ActivityCompat;
@@ -24,9 +22,11 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -35,7 +35,9 @@ import java.util.ArrayList;
  * Created by fantasy_apple on 2017/7/1.
  */
 
-public class MapsPresenter extends BasePresenter<MainContract.View> implements MapsContract.Presenter {
+public class MapsPresenter extends BasePresenter<MainContract.View> implements MapsContract.Presenter,
+        GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnInfoWindowClickListener {
 
     private static final String TAG = MapsFragment.class.getSimpleName();
     private final int DEFAULT_ZOOM = 15;
@@ -75,7 +77,10 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
     @Override
     public void setGoogleMap(GoogleMap googleMap) {
         this.googleMap = googleMap;
+        googleMap.setOnMarkerClickListener(this);
+        googleMap.setOnInfoWindowClickListener(this);
     }
+
 
     @Override
     public void updateLocationUI() {
@@ -176,39 +181,53 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
         }
         if (googleMap != null) {
             googleMap.clear();
+            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             for (int i = 0; i < placeDetailEntities.size(); i++) {
                 if (placeDetailEntities.get(i).getTime() <= weekValue) {
                     LatLng latLng = new LatLng(placeDetailEntities.get(i).getLat(), placeDetailEntities.get(i).getLon());
 
-                    int px = fragmentActivity.getResources().getDimensionPixelSize(R.dimen.map_dot_marker_size);
-                    Bitmap mDotMarkerBitmap = Bitmap.createBitmap(px, px, Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(mDotMarkerBitmap);
-                    Drawable shape;
+//                    int px = fragmentActivity.getResources().getDimensionPixelSize(R.dimen.map_dot_marker_size);
+//                    Bitmap mDotMarkerBitmap = Bitmap.createBitmap(px, px, Bitmap.Config.ARGB_8888);
+//                    Canvas canvas = new Canvas(mDotMarkerBitmap);
+//                    Drawable shape;
+                    BitmapDescriptor bitmapDescriptor;
                     switch (index) {
                         case TYPE_ROAD:
-                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_road);
+                            bitmapDescriptor = getMarkerIcon(ContextCompat.getColor(fragmentActivity, R.color.colorRoad));
                             break;
                         case TYPE_ENVIRONMENT:
-                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_environment);
+                            bitmapDescriptor = getMarkerIcon(ContextCompat.getColor(fragmentActivity, R.color.colorEnvironment));
                             break;
                         case TYPE_TREE:
-                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_tree);
+                            bitmapDescriptor = getMarkerIcon(ContextCompat.getColor(fragmentActivity, R.color.colorTree));
                             break;
                         case TYPE_PARK:
-                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_park);
+                            bitmapDescriptor = getMarkerIcon(ContextCompat.getColor(fragmentActivity, R.color.colorPark));
                             break;
                         case TYPE_OTHER:
                         default:
-                            shape = ContextCompat.getDrawable(fragmentActivity, R.drawable.map_dot_other);
+                            bitmapDescriptor = getMarkerIcon(ContextCompat.getColor(fragmentActivity, R.color.colorOther));
                             break;
                     }
-                    shape.setBounds(0, 0, mDotMarkerBitmap.getWidth(), mDotMarkerBitmap.getHeight());
-                    shape.draw(canvas);
+                    String  content = String.format("立案編號:%s\n陳情主旨:%s\n類別:%s\n立案時間:%s\n陳情地址:%s\n按讚人數：%s",
+                            placeDetailEntities.get(i).getNum(),
+                            placeDetailEntities.get(i).getQuestion(),
+                            placeDetailEntities.get(i).getCategory(),
+                            placeDetailEntities.get(i).getFilingTime(),
+                            placeDetailEntities.get(i).getAddress(),
+                            placeDetailEntities.get(i).getThumb());
 
-                    googleMap.addMarker(new MarkerOptions()
-                            .icon(BitmapDescriptorFactory.fromBitmap(mDotMarkerBitmap))
+                    MarkerOptions markerOptions = new MarkerOptions()
+                            .icon(bitmapDescriptor)
                             .anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
-                            .position(latLng));
+                            .position(latLng)
+                            .title(content)
+                            .snippet(placeDetailEntities.get(i).getPictureUrl());//Bring picture url
+
+                    MapInfoWindowAdapter adapter = new MapInfoWindowAdapter(fragmentActivity);
+                    googleMap.setInfoWindowAdapter(adapter);
+
+                    googleMap.addMarker(markerOptions).showInfoWindow();
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, googleMap.getCameraPosition().zoom));
                 }
             }
@@ -217,10 +236,27 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
     }
 
 
+    public BitmapDescriptor getMarkerIcon(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        return BitmapDescriptorFactory.defaultMarker(hsv[0]);
+    }
+
     @Override
     public void disconnet() {
 //        googleApiClient.disconnect();
 //        googleApiClient = null;
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Log.d(TAG, "marker:" + marker.getTitle());
+        return false;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Log.d(TAG, "marker:" + marker.getTitle());
     }
 
     @IntDef({TYPE_ROAD, TYPE_ENVIRONMENT, TYPE_TREE, TYPE_PARK, TYPE_OTHER})
