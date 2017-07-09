@@ -33,7 +33,7 @@
     <string name="main_title">我要陳情!(包大人～恕我攔轎)</string>
     <string name="main_switch_type">類型檢視</string>
     <string name="main_switch_map">地圖檢視</string>
-    <string name="main_search_btn">Go!</string>
+    <string name="main_search_btn">我的陳情案件查詢!</string>
     <string name="main_hint_type_key">關鍵字搜尋</string>
     <string name="main_hint_map_key">地點搜尋</string>
 
@@ -59,7 +59,12 @@
 
     <string name="map_week">週內</string>
 
-
-
+    <!-- filing-->
+    <string name="filing_title">我的陳情案件查詢</string>
+    <string name="filing_num">案件編號</string>
+    <string name="filing_password">案件密碼</string>
+    <string name="filing_btn">查詢</string>
+    <string name="filing_info_one">1.受理您的來信後，會寄送受理通知函到您的電子信箱，受理通知函內容包括受理案件編號及安全密碼， 您可於此頁面輸入受理案件編號、安全密碼以及來信時填寫的電子信箱，即可查詢案件處理情形。</string>
+    <string name="filing_info_two">2.如果您已加入網路市民，只要網路市民登入成功，即可立即查詢您所有的來信紀錄、案件處理情形 及回復內容，毋需再每個案件個別輸入受理案件編號、安全密碼。心動不如馬上行動， 立即加入網路市民。</string>
 
 </resources>

@@ -35,25 +35,15 @@
     <Button
         android:id="@+id/search_btn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:maxLines="1"
         android:text="@string/main_search_btn"
-        android:textSize="@dimen/small_text_size" />
+        android:textSize="@dimen/large_text_size" />
 
-
-    <EditText
-        android:id="@+id/search_edittext"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_toLeftOf="@id/search_btn"
-        android:layout_toRightOf="@id/type_segment_group"
-        android:hint="@string/main_hint_type_key"
-        android:maxLines="1" />
 
     <FrameLayout
         android:id="@+id/content_layout"

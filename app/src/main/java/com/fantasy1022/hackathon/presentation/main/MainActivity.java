@@ -15,11 +15,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.fantasy1022.hackathon.R;
+import com.fantasy1022.hackathon.presentation.filing.FilingActivity;
 import com.fantasy1022.hackathon.presentation.map.MapsFragment;
 import com.fantasy1022.hackathon.presentation.signin.SignInActivity;
 import com.fantasy1022.hackathon.presentation.type.TypeFragment;
@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity
     RadioButton typeRadioButton;
     @BindView(R.id.map_radio_btn)
     RadioButton mapRadioBtn;
-    @BindView(R.id.search_edittext)
-    EditText searchEdittext;
 
 
     Fragment typeFragment, mapFragment;
@@ -160,16 +158,14 @@ public class MainActivity extends AppCompatActivity
     @OnClick(R.id.type_radio_btn)
     public void onClickType() {
         Log.d(TAG, "type_radio_btn");
-        searchEdittext.setHint(getResources().getString(R.string.main_hint_type_key));
         showTypeFragment();
     }
 
     @OnClick(R.id.map_radio_btn)
     public void onClickMap() {
         Log.d(TAG, "map_radio_btn");
-        searchEdittext.setHint(getResources().getString(R.string.main_hint_map_key));
         //showMapFragment();
-        setFragment(mapFragment,false);
+        setFragment(mapFragment, false);
     }
 
     @Override
@@ -225,7 +221,7 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-  //  private void showMapFragment() {
+    //  private void showMapFragment() {
 //        typeFragment = getSupportFragmentManager().findFragmentByTag(TypeFragment.class.getName());
 //        mapFragment = getSupportFragmentManager().findFragmentByTag(MapsFragment.class.getName());
 //        getSupportFragmentManager().beginTransaction()
@@ -252,4 +248,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @OnClick(R.id.search_btn)
+    public void onViewClicked() {
+        startActivity(new Intent(MainActivity.this, FilingActivity.class));
+    }
 }
