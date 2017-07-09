@@ -38,6 +38,7 @@ ext {
     processButtonVersion = '1.0.4'
     segmentVersion = '1.0.6'
     bubbleseekbarVersion = '3.5-lite'
+    materialdatetimepickerVersion = '3.2.2'
 }
 
 dependencies {
@@ -68,6 +69,7 @@ dependencies {
     compile "com.github.dmytrodanylyk.android-process-button:library:$processButtonVersion"
     compile "com.xw.repo:bubbleseekbar:$bubbleseekbarVersion"
     compile "com.squareup.picasso:picasso:$picassoVersion"
+    compile "com.wdullaer:materialdatetimepicker:$materialdatetimepickerVersion"
 }
 
 apply plugin: 'com.google.gms.google-services'

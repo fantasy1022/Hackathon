@@ -1,7 +1,6 @@
 package com.fantasy1022.hackathon.presentation.type;
 
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.fantasy1022.hackathon.R;
+import com.fantasy1022.hackathon.presentation.report.ReportActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +66,7 @@ public class TypeFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.type_road_btn:
+                startActivity(new Intent(getActivity(), ReportActivity.class));
                 break;
             case R.id.type_environment_btn:
                 break;

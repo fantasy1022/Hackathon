@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".presentation.signin.SignInActivity" />
         <activity android:name=".presentation.map.MapsActivity" />
-        <activity android:name=".presentation.filing.FilingActivity"></activity>
+        <activity android:name=".presentation.filing.FilingActivity" />
+        <activity android:name=".presentation.report.ReportActivity"></activity>
     </application>
 
 </manifest>

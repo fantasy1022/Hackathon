@@ -59,7 +59,7 @@
 
     <string name="map_week">週內</string>
 
-    <!-- filing-->
+    <!-- Filing-->
     <string name="filing_title">我的陳情案件查詢</string>
     <string name="filing_num">案件編號</string>
     <string name="filing_password">案件密碼</string>
@@ -67,4 +67,16 @@
     <string name="filing_info_one">1.受理您的來信後，會寄送受理通知函到您的電子信箱，受理通知函內容包括受理案件編號及安全密碼， 您可於此頁面輸入受理案件編號、安全密碼以及來信時填寫的電子信箱，即可查詢案件處理情形。</string>
     <string name="filing_info_two">2.如果您已加入網路市民，只要網路市民登入成功，即可立即查詢您所有的來信紀錄、案件處理情形 及回復內容，毋需再每個案件個別輸入受理案件編號、安全密碼。心動不如馬上行動， 立即加入網路市民。</string>
 
+    <!-- Report -->
+    <string name="report_time">*通報時間</string>
+    <string name="report_person">*陳情人</string>
+    <string name="report_phone">*電話</string>
+    <string name="report_email">*信箱</string>
+    <string name="report_category">*陳情類別</string>
+    <string name="report_question">問題描述</string>
+    <string name="report_address">*陳情地點</string>
+    <string name="report_address_map">以地圖方式標記</string>
+    <string name="report_picture">新增照片</string>
+    <string name="report_send">案件送出</string>
+    <string name="report_note">(*為必填項目)</string>
 </resources>
