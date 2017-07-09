@@ -1,22 +1,21 @@
 package com.fantasy1022.hackathon.presentation.signin;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.util.Log;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import com.blankj.utilcode.utils.NetworkUtils;
-import com.blankj.utilcode.utils.RegexUtils;
 import com.dd.processbutton.iml.ActionProcessButton;
 import com.fantasy1022.hackathon.R;
 import com.fantasy1022.hackathon.common.Dialog;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,7 +41,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     EditText passwordEditText;
     @BindView(R.id.passwordInputLay)
     TextInputLayout passwordInputLay;
-    @BindView( R.id.signInBtn)
+    @BindView(R.id.signInBtn)
     ActionProcessButton signInBtn;
 
 
@@ -108,7 +107,7 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         if (NetworkUtils.isAvailable(this)) {
             signInBtn.setEnabled(false);
             signInBtn.setProgress(10);
-            signInPresenter.signInToFirebase(emailEditText.getText().toString(), passwordEditText.getText().toString());
+            signInPresenter.signInToFirebase(emailEditText.getText().toString().concat("@gmail.com"), passwordEditText.getText().toString());
         } else {
             Dialog.showInfoDialog(this, getString(R.string.dialog_error_title), getString(R.string.dialog_network_error_message));
         }
@@ -140,11 +139,11 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
 
     @OnEditorAction(value = R.id.passwordEditText)
     public boolean OnEdit(int actionId) {
-        if(actionId== EditorInfo.IME_ACTION_GO){
+        if (actionId == EditorInfo.IME_ACTION_GO) {
             if (NetworkUtils.isAvailable(this)) {
                 signInBtn.setEnabled(false);
                 signInBtn.setProgress(10);
-                signInPresenter.signInToFirebase(emailEditText.getText().toString(), passwordEditText.getText().toString());
+                signInPresenter.signInToFirebase(emailEditText.getText().toString().concat("@gmail.com"), passwordEditText.getText().toString());
             } else {
                 Dialog.showInfoDialog(this, getString(R.string.dialog_error_title), getString(R.string.dialog_network_error_message));
             }
@@ -152,7 +151,6 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
         }
         return false;
     }
-
 
 
     private void checkSignInBtnEnable() {
@@ -166,5 +164,17 @@ public class SignInActivity extends AppCompatActivity implements SignInContract.
     }
 
 
+    @OnClick({R.id.phoneLay, R.id.questionLay, R.id.aboutLay})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.phoneLay:
+                Log.d(TAG, "phoneLay onclick");
+                break;
+            case R.id.questionLay:
+                break;
+            case R.id.aboutLay:
+                break;
+        }
+    }
 }
 

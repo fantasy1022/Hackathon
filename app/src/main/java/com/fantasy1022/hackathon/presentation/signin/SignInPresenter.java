@@ -11,7 +11,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 /**
  * Created by fantasy_apple on 2017/6/27.
@@ -19,7 +18,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SignInPresenter extends BasePresenter<SignInContract.View> implements SignInContract.Presenter {
 
-    private final String TAG = "SignInActivity";
+    private final String TAG = SignInActivity.class.getSimpleName();
     private FirebaseAuth auth;
     private Context context;
     private SPUtils sp;
@@ -33,6 +32,7 @@ public class SignInPresenter extends BasePresenter<SignInContract.View> implemen
     @Override
     public void signInToFirebase(@NonNull final String email, @NonNull final String password) {
         getView().disableEmailPasswordEdit();
+        Log.d(TAG, "email:" + email + " password:" + password);
 
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -44,10 +44,11 @@ public class SignInPresenter extends BasePresenter<SignInContract.View> implemen
 //                            FirebaseMessaging.getInstance().subscribeToTopic(topicName);
                             sp.putString(Constant.KEY_SP_EMAIL, email);
                             sp.putString(Constant.KEY_SP_PASSWORD, password);
-                           // sp.putString(Constant.KEY_SP_TOPIC_NAME, topicName);
-                          //  Log.d(TAG, "topic name:" + topicName);
+                            // sp.putString(Constant.KEY_SP_TOPIC_NAME, topicName);
+                            //  Log.d(TAG, "topic name:" + topicName);
                             getView().goToNextPage();
                         } else {
+                            Log.d(TAG, "Exception:" + task.getException());
                             getView().showError();
                             getView().clearPasswordEdit();
                             getView().enableEmailPasswordEdit();
