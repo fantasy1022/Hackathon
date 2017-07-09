@@ -25,7 +25,6 @@ public class MapInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     TextView contentTxt;
 
 
-
     public MapInfoWindowAdapter(Activity context) {
         this.context = context;
     }
@@ -40,7 +39,11 @@ public class MapInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
         View view = context.getLayoutInflater().inflate(R.layout.adapter_map_info_window, null);
         ButterKnife.bind(this, view);
         contentTxt.setText(marker.getTitle());
-        Picasso.with(context).load(marker.getSnippet()).into(eventImage);
+        Picasso.with(context)
+                .load(marker.getSnippet())
+                .resizeDimen(R.dimen.map_info_window_width, R.dimen.map_info_window_height)
+                .centerCrop()
+                .into(eventImage);
         return view;
     }
 }

@@ -227,7 +227,7 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
                     MapInfoWindowAdapter adapter = new MapInfoWindowAdapter(fragmentActivity);
                     googleMap.setInfoWindowAdapter(adapter);
 
-                    googleMap.addMarker(markerOptions).showInfoWindow();
+                    googleMap.addMarker(markerOptions);
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, googleMap.getCameraPosition().zoom));
                 }
             }
