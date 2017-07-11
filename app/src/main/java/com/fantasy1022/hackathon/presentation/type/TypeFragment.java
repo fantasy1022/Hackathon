@@ -66,7 +66,7 @@ public class TypeFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.type_road_btn:
-                startActivity(new Intent(getActivity(), ReportActivity.class));
+                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
                 break;
             case R.id.type_environment_btn:
                 break;

@@ -5,13 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.fantasy1022.hackathon.presentation.type.TypeFragment">
 
-    <!--<View-->
-    <!--android:id="@+id/base_line"-->
-    <!--android:layout_width="1dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_centerHorizontal="true" />-->
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/type_road_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,13 +17,22 @@
             android:id="@+id/type_road_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="@string/type_road" />
-    </FrameLayout>
+            android:layout_centerInParent="true"
+            android:background="@drawable/type_road" />
+
+        <TextView
+            android:id="@+id/type_road_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/type_road_btn"
+            android:layout_centerHorizontal="true"
+            android:text="@string/type_road"
+            android:textColor="@android:color/black" />
+
+    </RelativeLayout>
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/type_environment_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -40,13 +44,22 @@
             android:id="@+id/type_environment_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="@string/type_environment" />
-    </FrameLayout>
+            android:layout_centerInParent="true"
+            android:background="@drawable/type_environment" />
+
+        <TextView
+            android:id="@+id/type_environment_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/type_environment_btn"
+            android:layout_centerHorizontal="true"
+            android:text="@string/type_environment"
+            android:textColor="@android:color/black" />
+
+    </RelativeLayout>
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/type_tree_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -58,13 +71,21 @@
             android:id="@+id/type_tree_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="@string/type_tree" />
-    </FrameLayout>
+            android:layout_centerInParent="true"
+            android:background="@drawable/type_tree" />
+
+        <TextView
+            android:id="@+id/type_tree_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/type_tree_btn"
+            android:layout_centerHorizontal="true"
+            android:text="@string/type_tree"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/type_park_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -76,13 +97,21 @@
             android:id="@+id/type_park_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="@string/type_park" />
-    </FrameLayout>
+            android:layout_centerInParent="true"
+            android:background="@drawable/type_park" />
+
+        <TextView
+            android:id="@+id/type_park_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/type_park_btn"
+            android:layout_centerHorizontal="true"
+            android:text="@string/type_park"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/type_other_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -94,12 +123,21 @@
             android:id="@+id/type_other_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="@string/type_other" />
-    </FrameLayout>
+            android:layout_centerInParent="true"
+            android:background="@drawable/type_other" />
 
-    <FrameLayout
+        <TextView
+            android:id="@+id/type_other_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/type_other_btn"
+            android:layout_centerHorizontal="true"
+            android:text="@string/type_other"
+            android:textColor="@android:color/black" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/type_question_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -111,10 +149,18 @@
             android:id="@+id/type_question_btn"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:text="@string/type_question" />
-    </FrameLayout>
+            android:layout_centerInParent="true"
+            android:background="@drawable/type_question" />
+
+        <TextView
+            android:id="@+id/type_question_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/type_question_btn"
+            android:layout_centerHorizontal="true"
+            android:text="@string/type_question"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
 
 
 </android.support.percent.PercentFrameLayout>
