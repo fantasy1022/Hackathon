@@ -183,7 +183,9 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
             googleMap.clear();
             googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             for (int i = 0; i < placeDetailEntities.size(); i++) {
-                if (placeDetailEntities.get(i).getTime() <= weekValue) {
+                int time = placeDetailEntities.get(i).getTime();
+                Log.d(TAG,"time:"+time);
+                if (time <= weekValue) {
                     LatLng latLng = new LatLng(placeDetailEntities.get(i).getLat(), placeDetailEntities.get(i).getLon());
 
 //                    int px = fragmentActivity.getResources().getDimensionPixelSize(R.dimen.map_dot_marker_size);
@@ -209,13 +211,14 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
                             bitmapDescriptor = getMarkerIcon(ContextCompat.getColor(fragmentActivity, R.color.colorOther));
                             break;
                     }
-                    String  content = String.format("立案編號:%s\n陳情主旨:%s\n類別:%s\n立案時間:%s\n陳情地址:%s\n按讚人數：%s",
+                    String content = String.format("立案編號:%s\n陳情主旨:%s\n類別:%s\n立案時間:%s\n陳情地址:%s\n按讚人數:%s\n已解決:%s",
                             placeDetailEntities.get(i).getNum(),
                             placeDetailEntities.get(i).getQuestion(),
                             placeDetailEntities.get(i).getCategory(),
                             placeDetailEntities.get(i).getFilingTime(),
                             placeDetailEntities.get(i).getAddress(),
-                            placeDetailEntities.get(i).getThumb());
+                            placeDetailEntities.get(i).getThumb(),
+                            ("true".equals(placeDetailEntities.get(i).getResolve()) ? "已解決" : "未解決"));
 
                     MarkerOptions markerOptions = new MarkerOptions()
                             .icon(bitmapDescriptor)

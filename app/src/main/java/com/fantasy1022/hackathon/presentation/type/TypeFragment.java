@@ -69,10 +69,13 @@ public class TypeFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
                 break;
             case R.id.type_environment_btn:
+                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
                 break;
             case R.id.type_tree_btn:
+                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
                 break;
             case R.id.type_park_btn:
+                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
                 break;
             case R.id.type_other_btn:
                 break;
