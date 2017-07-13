@@ -79,4 +79,6 @@
     <string name="report_picture">新增照片</string>
     <string name="report_send">案件送出</string>
     <string name="report_note">(*為必填項目)</string>
+
+    <string name="report_key">陳情</string>
 </resources>

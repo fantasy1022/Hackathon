@@ -3,6 +3,7 @@ package com.fantasy1022.hackathon.presentation.report;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.blankj.utilcode.utils.TimeUtils;
@@ -21,6 +22,8 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
     private final String TAG = ReportActivity.class.getSimpleName();
     @BindView(R.id.dateTxt)
     TextView dateTxt;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,8 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
         setContentView(R.layout.activity_report);
         ButterKnife.bind(this);
         dateTxt.setText(TimeUtils.getCurTimeString(new SimpleDateFormat("yyyy/MM/dd")));
+        String title = getString(R.string.type_road) + getString(R.string.report_key);
+        toolbar.setTitle(title);
     }
 
 

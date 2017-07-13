@@ -123,11 +123,44 @@
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:id="@+id/addressTxt"
+                android:id="@+id/reportCategoryTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/questionInputLay"
                 android:layout_marginTop="-25dp"
+                android:text="@string/report_category"
+                android:textSize="@dimen/large_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/reportSubCategoryTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reportCategoryTxt"
+
+                android:text="路平問題"
+                android:textSize="@dimen/large_text_size"
+                android:textStyle="bold" />
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/subCategoryQuestionLay"-->
+                <!--android:layout_toRightOf="@id/reportSubCategoryTxt"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<CheckBox-->
+                    <!--android:id="@+id/checkbox_meat"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="路面不平" />-->
+
+            <!--</LinearLayout>-->
+
+            <TextView
+                android:id="@+id/addressTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reportSubCategoryTxt"
                 android:text="@string/report_address"
                 android:textSize="@dimen/large_text_size"
                 android:textStyle="bold" />
