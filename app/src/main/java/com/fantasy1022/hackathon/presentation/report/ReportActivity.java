@@ -1,6 +1,8 @@
 package com.fantasy1022.hackathon.presentation.report;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +22,7 @@ import butterknife.OnClick;
 public class ReportActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private final String TAG = ReportActivity.class.getSimpleName();
+    private final static String KEY_TITLE = "KEY_TITLE";
     @BindView(R.id.dateTxt)
     TextView dateTxt;
     @BindView(R.id.toolbar)
@@ -31,8 +34,15 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
         setContentView(R.layout.activity_report);
         ButterKnife.bind(this);
         dateTxt.setText(TimeUtils.getCurTimeString(new SimpleDateFormat("yyyy/MM/dd")));
-        String title = getString(R.string.type_road) + getString(R.string.report_key);
+        String title = getIntent().getStringExtra(KEY_TITLE);
         toolbar.setTitle(title);
+    }
+
+    public static void newIntent(Activity activity, String... para) {
+        Intent intent = new Intent(activity, ReportActivity.class);
+        intent.putExtra(KEY_TITLE, para[0]);
+
+        activity.startActivity(intent);
     }
 
 

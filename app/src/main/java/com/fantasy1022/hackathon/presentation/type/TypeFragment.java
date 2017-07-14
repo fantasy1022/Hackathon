@@ -1,6 +1,5 @@
 package com.fantasy1022.hackathon.presentation.type;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -66,20 +65,29 @@ public class TypeFragment extends Fragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.type_road_btn:
-                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
+                String road = getString(R.string.type_road) + getString(R.string.report_key);
+                String roadSub = getString(R.string.report_road_sub);
+                //TODO
+                ReportActivity.newIntent(getActivity(), road, roadSub);
                 break;
             case R.id.type_environment_btn:
-                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
+                String environment = getString(R.string.type_environment) + getString(R.string.report_key);
+                ReportActivity.newIntent(getActivity(), environment);
                 break;
             case R.id.type_tree_btn:
-                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
+                String tree = getString(R.string.type_tree) + getString(R.string.report_key);
+                ReportActivity.newIntent(getActivity(), tree);
                 break;
             case R.id.type_park_btn:
-                startActivity(new Intent(getActivity(), ReportActivity.class));//TODO:bring intent
+                String park = getString(R.string.type_park) + getString(R.string.report_key);
+                ReportActivity.newIntent(getActivity(), park);
                 break;
             case R.id.type_other_btn:
+                String other = getString(R.string.type_other) + getString(R.string.report_key);
+                ReportActivity.newIntent(getActivity(), other);
                 break;
             case R.id.type_question_btn:
+
                 break;
         }
     }
