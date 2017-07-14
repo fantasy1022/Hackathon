@@ -47,7 +47,6 @@
 
 
     <!--Map-->
-    <string name="google_maps_key">AIzaSyBi2cEGQs7MkNNarWClj8J1zW0BzRlyjyg</string>
 
     <string-array name="map_type_spinner">
         <item>道路維護</item>
