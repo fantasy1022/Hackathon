@@ -86,7 +86,6 @@
         <item>坑洞</item>
         <item>龜裂</item>
         <item>路面不平</item>
-        <item>其他</item>
     </string-array>
 
     <string name="report_road_sub_two">人孔蓋或水溝</string>
@@ -94,7 +93,6 @@
         <item>遺失</item>
         <item>損壞</item>
         <item>水溝不通</item>
-        <item>其他</item>
     </string-array>
 
 </resources>

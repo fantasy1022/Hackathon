@@ -132,35 +132,81 @@
                 android:textSize="@dimen/large_text_size"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/reportSubCategoryTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/reportCategoryTxt"
 
-                android:text="路平問題"
-                android:textSize="@dimen/large_text_size"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:id="@+id/questionLay"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/reportCategoryTxt">
 
-            <!--<LinearLayout-->
-                <!--android:id="@+id/subCategoryQuestionLay"-->
-                <!--android:layout_toRightOf="@id/reportSubCategoryTxt"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+                <TextView
+                    android:id="@+id/questionCatTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/reportCategoryTxt"
+                    android:text="路平問題"
+                    android:textSize="@dimen/medium_text_size"
+                    android:textStyle="bold" />
 
-                <!--<CheckBox-->
-                    <!--android:id="@+id/checkbox_meat"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="路面不平" />-->
+                <CheckBox
+                    android:id="@+id/itemOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="路面不平" />
 
-            <!--</LinearLayout>-->
+                <CheckBox
+                    android:id="@+id/itemTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="路面不平" />
+
+                <CheckBox
+                    android:id="@+id/itemThree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="路面不平" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/questionLay2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@id/questionLay">
+
+                <TextView
+                    android:id="@+id/questionCatTxt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/reportCategoryTxt"
+                    android:text="路平問題"
+                    android:textSize="@dimen/medium_text_size"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/itemOne2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="路面不平" />
+
+                <CheckBox
+                    android:id="@+id/itemTwo2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="路面不平" />
+
+                <CheckBox
+                    android:id="@+id/itemThree2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="路面不平" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/addressTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/reportSubCategoryTxt"
+                android:layout_below="@id/questionLay2"
                 android:text="@string/report_address"
                 android:textSize="@dimen/large_text_size"
                 android:textStyle="bold" />

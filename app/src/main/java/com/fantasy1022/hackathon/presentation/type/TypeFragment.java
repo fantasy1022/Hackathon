@@ -67,24 +67,32 @@ public class TypeFragment extends Fragment {
             case R.id.type_road_btn:
                 String road = getString(R.string.type_road) + getString(R.string.report_key);
                 String roadSub = getString(R.string.report_road_sub);
-                //TODO
-                ReportActivity.newIntent(getActivity(), road, roadSub);
+                String[] roadSubOpt = getResources().getStringArray(R.array.report_road_sub_item);
+                String roadSubTwo = getString(R.string.report_road_sub_two);
+                String[] roadSubTwoOpt = getResources().getStringArray(R.array.report_road_sub_two_item);
+
+                ReportActivity.newIntent(getActivity(), road, roadSub, roadSubOpt, roadSubTwo, roadSubTwoOpt);
                 break;
             case R.id.type_environment_btn:
+                String[] arrayEnvironment =  new String[3];
                 String environment = getString(R.string.type_environment) + getString(R.string.report_key);
-                ReportActivity.newIntent(getActivity(), environment);
+                ReportActivity.newIntent(getActivity(), environment, "", arrayEnvironment, "", arrayEnvironment);
                 break;
             case R.id.type_tree_btn:
+                String[] arrayTree =  new String[3];
                 String tree = getString(R.string.type_tree) + getString(R.string.report_key);
-                ReportActivity.newIntent(getActivity(), tree);
+                ReportActivity.newIntent(getActivity(), tree ,"", arrayTree, "", arrayTree);
                 break;
             case R.id.type_park_btn:
+                String[] arrayPark =  new String[3];
                 String park = getString(R.string.type_park) + getString(R.string.report_key);
-                ReportActivity.newIntent(getActivity(), park);
+                ReportActivity.newIntent(getActivity(), park,"", arrayPark, "", arrayPark);
                 break;
             case R.id.type_other_btn:
+                String[] arrayOther =  new String[3];
+
                 String other = getString(R.string.type_other) + getString(R.string.report_key);
-                ReportActivity.newIntent(getActivity(), other);
+                ReportActivity.newIntent(getActivity(), other,"", arrayOther, "", arrayOther);
                 break;
             case R.id.type_question_btn:
 
