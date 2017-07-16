@@ -1,5 +1,6 @@
 package com.fantasy1022.hackathon.presentation.type;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.fantasy1022.hackathon.R;
+import com.fantasy1022.hackathon.presentation.bot.BotActivity;
 import com.fantasy1022.hackathon.presentation.report.ReportActivity;
 
 import butterknife.BindView;
@@ -74,28 +76,27 @@ public class TypeFragment extends Fragment {
                 ReportActivity.newIntent(getActivity(), road, roadSub, roadSubOpt, roadSubTwo, roadSubTwoOpt);
                 break;
             case R.id.type_environment_btn:
-                String[] arrayEnvironment =  new String[3];
+                String[] arrayEnvironment = new String[3];
                 String environment = getString(R.string.type_environment) + getString(R.string.report_key);
                 ReportActivity.newIntent(getActivity(), environment, "", arrayEnvironment, "", arrayEnvironment);
                 break;
             case R.id.type_tree_btn:
-                String[] arrayTree =  new String[3];
+                String[] arrayTree = new String[3];
                 String tree = getString(R.string.type_tree) + getString(R.string.report_key);
-                ReportActivity.newIntent(getActivity(), tree ,"", arrayTree, "", arrayTree);
+                ReportActivity.newIntent(getActivity(), tree, "", arrayTree, "", arrayTree);
                 break;
             case R.id.type_park_btn:
-                String[] arrayPark =  new String[3];
+                String[] arrayPark = new String[3];
                 String park = getString(R.string.type_park) + getString(R.string.report_key);
-                ReportActivity.newIntent(getActivity(), park,"", arrayPark, "", arrayPark);
+                ReportActivity.newIntent(getActivity(), park, "", arrayPark, "", arrayPark);
                 break;
             case R.id.type_other_btn:
-                String[] arrayOther =  new String[3];
-
+                String[] arrayOther = new String[3];
                 String other = getString(R.string.type_other) + getString(R.string.report_key);
-                ReportActivity.newIntent(getActivity(), other,"", arrayOther, "", arrayOther);
+                ReportActivity.newIntent(getActivity(), other, "", arrayOther, "", arrayOther);
                 break;
             case R.id.type_question_btn:
-
+                startActivity(new Intent(getActivity(), BotActivity.class));
                 break;
         }
     }

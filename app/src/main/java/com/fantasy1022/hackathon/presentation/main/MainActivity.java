@@ -158,7 +158,10 @@ public class MainActivity extends AppCompatActivity
     @OnClick(R.id.type_radio_btn)
     public void onClickType() {
         Log.d(TAG, "type_radio_btn");
-        showTypeFragment();
+        FragmentManager fragmentMgr = getSupportFragmentManager();
+
+        // showTypeFragment();
+        setFragment(typeFragment, false);
     }
 
     @OnClick(R.id.map_radio_btn)
@@ -234,6 +237,7 @@ public class MainActivity extends AppCompatActivity
     private void setFragment(Fragment fragment, boolean isAddBackStack) {
         FragmentManager fragmentMgr = getSupportFragmentManager();
         FragmentTransaction fragmentTrans = fragmentMgr.beginTransaction();
+        Log.d(TAG, "fragment.getClass().getName():" + fragment.getClass().getName());
         fragmentTrans.replace(R.id.content_layout, fragment, fragment.getClass().getName());//TODO: Check tag fragmentTrans
         if (isAddBackStack) {
             fragmentTrans.addToBackStack(null);

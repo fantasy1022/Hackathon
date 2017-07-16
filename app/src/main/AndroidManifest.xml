@@ -3,6 +3,7 @@
     package="com.fantasy1022.hackathon">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +27,8 @@
         <activity android:name=".presentation.signin.SignInActivity" />
         <activity android:name=".presentation.map.MapsActivity" />
         <activity android:name=".presentation.filing.FilingActivity" />
-        <activity android:name=".presentation.report.ReportActivity"></activity>
+        <activity android:name=".presentation.report.ReportActivity" />
+        <activity android:name=".presentation.bot.BotActivity"></activity>
     </application>
 
 </manifest>

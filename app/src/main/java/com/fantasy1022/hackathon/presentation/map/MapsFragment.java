@@ -140,7 +140,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFirebaseDataChange(DataChangeEvent event) {
-        Log.d(TAG, "DataChangeEvent:" + event.isChange);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -160,17 +159,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+                .findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this);
+    }
+
+    @Override
     public void getProgressOnFinally(int progress, float progressFloat) {
-        Log.d(TAG, "getProgressOnFinally" + progress + " float:" + progressFloat);
         weekSeekBar = progress;
         mapPresenter.updateMapMaker(typeIndex, weekSeekBar);
     }
 
-    //    @Override
-//    public void onDestroyView() {
-//        Log.d(TAG,"onDestroyView");
-//        mapPresenter.disconnet();
-//        super.onDestroyView();
-//
-//    }
 }
