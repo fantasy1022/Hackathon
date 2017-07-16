@@ -7,7 +7,7 @@
     <dimen name="xxlarge_text_size">24sp</dimen>
 
     <!--Map dot-->
-    <dimen name="map_info_window_width">60dp</dimen>
+    <dimen name="map_info_window_width">120dp</dimen>
     <dimen name="map_info_window_height">120dp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->

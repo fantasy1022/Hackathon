@@ -1,11 +1,13 @@
 package com.fantasy1022.hackathon.presentation.main;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -23,6 +26,7 @@ import com.fantasy1022.hackathon.presentation.filing.FilingActivity;
 import com.fantasy1022.hackathon.presentation.map.MapsFragment;
 import com.fantasy1022.hackathon.presentation.signin.SignInActivity;
 import com.fantasy1022.hackathon.presentation.type.TypeFragment;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     Fragment typeFragment, mapFragment;
 
     TextView nameText, emailText;//Can not use butterknife to bind
+    ImageView headerImg;
 
     private MainContract.Presenter mainPresenter;
 
@@ -90,6 +95,8 @@ public class MainActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         nameText = (TextView) header.findViewById(R.id.nameText);
         emailText = (TextView) header.findViewById(R.id.emailText);
+        headerImg = (ImageView)  header.findViewById(R.id.headImg);
+
         toolbar.setTitle(getResources().getString(R.string.main_title));
         typeRadioButton.toggle();
     }
@@ -138,6 +145,12 @@ public class MainActivity extends AppCompatActivity
     public void showSignInInfo(String name, String email) {
         nameText.setText(name);
         emailText.setText(email);
+//        ContextCompat.getDrawable(this,R.drawable.cool);
+//        Picasso.with(this)
+//                .load(R.drawable.cool)
+//                .fit()
+//                .centerCrop()
+//                .into(headerImg);
     }
 
     @Override

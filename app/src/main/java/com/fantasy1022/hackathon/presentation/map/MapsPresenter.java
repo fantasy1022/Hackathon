@@ -163,7 +163,6 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
             switch (index) {
                 case TYPE_ROAD:
                     placeDetailEntities = placeEntity.getRoad();
-
                     break;
                 case TYPE_ENVIRONMENT:
                     placeDetailEntities = placeEntity.getEnvironment();
@@ -172,7 +171,7 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
                     placeDetailEntities = placeEntity.getTree();
                     break;
                 case TYPE_PARK:
-                    placeDetailEntities = placeEntity.getTree();
+                    placeDetailEntities = placeEntity.getPark();
                     break;
                 case TYPE_OTHER:
                     placeDetailEntities = placeEntity.getOther();
@@ -259,6 +258,8 @@ public class MapsPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void onInfoWindowClick(Marker marker) {
+        MapDetailActivity.newIntent(fragmentActivity,marker.getSnippet(),marker.getTitle());
+
         Log.d(TAG, "marker:" + marker.getTitle());
     }
 

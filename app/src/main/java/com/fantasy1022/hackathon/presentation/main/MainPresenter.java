@@ -48,7 +48,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
         String email = sp.getString(Constant.KEY_SP_EMAIL);
         String name = sp.getString(Constant.KEY_SP_TOPIC_NAME);
         Log.d(TAG, "eamil:" + email + " name:" + name);
-        getView().showSignInInfo(name, email);
+        getView().showSignInInfo("UXDDD", "");
     }
 
     @Override

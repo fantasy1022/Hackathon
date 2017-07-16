@@ -43,6 +43,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
     Spinner mapTypeSpinner;
     @BindView(R.id.seekbar)
     BubbleSeekBar seekBar;
+    private boolean isSync;
 
 
     private
@@ -115,9 +116,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         Log.d(TAG, "Play services connection onConnected");
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map_fragment);
-        mapFragment.getMapAsync(this);
+        if(!isSync){
+            isSync=true;
+            SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+                    .findFragmentById(R.id.map_fragment);
+            mapFragment.getMapAsync(this);
+        }
     }
 
     @Override
@@ -161,9 +165,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, MapsCo
     @Override
     public void onResume() {
         super.onResume();
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
-                .findFragmentById(R.id.map_fragment);
-        mapFragment.getMapAsync(this);
+//        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+//                .findFragmentById(R.id.map_fragment);
+//        mapFragment.getMapAsync(this);
     }
 
     @Override

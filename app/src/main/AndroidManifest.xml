@@ -28,7 +28,8 @@
         <activity android:name=".presentation.map.MapsActivity" />
         <activity android:name=".presentation.filing.FilingActivity" />
         <activity android:name=".presentation.report.ReportActivity" />
-        <activity android:name=".presentation.bot.BotActivity"></activity>
+        <activity android:name=".presentation.bot.BotActivity" />
+        <activity android:name=".presentation.map.MapDetailActivity"></activity>
     </application>
 
 </manifest>

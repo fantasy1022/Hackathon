@@ -1,6 +1,7 @@
 package com.fantasy1022.hackathon.presentation.report;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +9,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -39,9 +41,9 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ReportActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener ,OnMapReadyCallback ,
+public class ReportActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
 
     private final String TAG = ReportActivity.class.getSimpleName();
     private final static String KEY_TITLE = "KEY_TITLE";
@@ -49,6 +51,7 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
     private final static String KEY_SUB_OPT = "KEY_SUB_OPT";
     private final static String KEY_SUB_TWO = "KEY_SUB_TWO";
     private final static String KEY_SUB_TWO_OPT = "KEY_SUB_TWO_OPT";
+
     private GoogleApiClient googleApiClient;
     private GoogleMap googleMap;
     private boolean locationPermissionGranted;
@@ -58,7 +61,12 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
     private final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private CameraPosition cameraPosition;
 
-
+    @BindView(R.id.personEditText)
+    TextInputEditText personEditText;
+    @BindView(R.id.phoneEditText)
+    TextInputEditText phoneEditText;
+    @BindView(R.id.emailEditText)
+    TextInputEditText emailEditText;
     @BindView(R.id.dateTxt)
     TextView dateTxt;
     @BindView(R.id.toolbar)
@@ -86,14 +94,18 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
         String subTwo = getIntent().getStringExtra(KEY_SUB_TWO);
         questionCatTxt2.setText(subTwo);
 
+        personEditText.setText("UXDDD");
+        phoneEditText.setText("0900123456");
+        emailEditText.setText("UXDDD@gmail.com");
+
         String[] subOpt = getIntent().getStringArrayExtra(KEY_SUB_OPT);
-        for(int i =0;i<subOpt.length;i++){
+        for (int i = 0; i < subOpt.length; i++) {
             item[i].setText(subOpt[i]);
         }
 
         String[] subOpt2 = getIntent().getStringArrayExtra(KEY_SUB_TWO_OPT);
 
-        for(int i =0;i<subOpt2.length;i++){
+        for (int i = 0; i < subOpt2.length; i++) {
             item2[i].setText(subOpt2[i]);
         }
         initGoogleApiClient();
@@ -167,8 +179,6 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
     }
 
 
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
@@ -192,12 +202,12 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
     private void updateLocationUI() {
 
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true;
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
 
@@ -213,12 +223,12 @@ public class ReportActivity extends AppCompatActivity implements DatePickerDialo
 
     private void getDeviceLocation() {
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true;
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
         /*
